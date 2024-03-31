@@ -22,17 +22,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
-
-# Use include() to add paths from the olm application
-urlpatterns += [
     path('olm/', include('olm.urls')),
-]
-
-# Add URL maps to redirect the base URL to our application
-urlpatterns += [
     path('', RedirectView.as_view(url='olm/', permanent=True)),
-]
-
-# Use static() to add URL mapping to serve static files during development (only)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
