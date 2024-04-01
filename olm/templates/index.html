@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Ollama Conversation Generator Home</h1>
+  <p>
+    Welcome to the Ollama Conversation Generator. 
+    Please start a conversation.
+  </p>
+  <h2>Conversations</h2>
+  <p>The database has the following record counts:</p>
+  <ul>
+    <li><strong>Persons:</strong> {{ num_persons }}</li>
+    <li><strong>Conversations:</strong> {{ num_conversations }}</li>
+    <li><strong>Documents:</strong> {{ num_docs }}</li>
+    <li><strong>Conversation Intances:</strong> {{ num_instances }}</li>
+  </ul>
+{% endblock %}

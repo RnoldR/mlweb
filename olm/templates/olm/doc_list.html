@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Documents</h1>
+  {% if doc_list %}
+    <ul>
+      {% for doc in doc_list %}
+      <li>
+        <a href="{{ doc.get_absolute_url }}">{{ doc.name }}</a>:
+        <a href="{{ doc.url }}">{{ doc.url }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no documents specified.</p>
+  {% endif %}
+{% endblock %}
