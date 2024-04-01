@@ -157,13 +157,13 @@ class Doc(models.Model):
     name = models.CharField(
         max_length = 20,
         default = '',
-        help_text = "Name of this document",
+        help_text = "Name of document",
     )
     
     url = models.CharField(
         max_length = 256,
         null = False,
-        help_text = "Name of this document",
+        help_text = "Name of document",
     )
     
     class Meta:
