@@ -75,7 +75,7 @@ class Conversation(models.Model):
         ordering = ['started']
 
     def __str__(self):
-        return f'{llm_used} at {started}'
+        return f'{self.llm_used} @ {self.started}'
     
 ### class: Conversation ###
     
@@ -90,15 +90,14 @@ class Person(models.Model):
 
     name = models.CharField(
         max_length = 20,
-        default = 'en',
-        help_text = "Name of this person",
+        help_text = "Name of person",
     )
     
     class Meta:
         ordering = ['name']
 
     def __str__(self):
-        return f'{name}'
+        return f'{self.name}'
     
 ### class: Person ###
 
@@ -142,7 +141,7 @@ class Uttering(models.Model):
         ordering = ['person', 'timestamp']
 
     def __str__(self):
-        return f'{time_stamp}: {person}'
+        return f'{self.person}:   {self.timestamp}'
     
 ### class: Uttering ###
     
@@ -157,7 +156,7 @@ class Doc(models.Model):
     
     name = models.CharField(
         max_length = 20,
-        default = 'en',
+        default = '',
         help_text = "Name of this document",
     )
     
@@ -171,7 +170,7 @@ class Doc(models.Model):
         ordering = ['name']
 
     def __str__(self):
-        return f'{name}: {url}'
+        return f'{self.name}:   {self.url}'
     
 ### class: Doc ###
     
@@ -215,6 +214,6 @@ class DocInstance(models.Model):
         ordering = ['conversation_id']
 
     def __str__(self):
-        return f'{conversation_id}: {doc_id}'
+        return f'{self.conversation_id}:   {self.doc_id}'
     
 ### class: DocInstance ###
