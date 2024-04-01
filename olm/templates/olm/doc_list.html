@@ -6,6 +6,7 @@
     <ul>
       {% for doc in doc_list %}
       <li>
+        {{ doc.id }}
         <a href="{{ doc.get_absolute_url }}">{{ doc.name }}</a>:
         <a href="{{ doc.url }}">{{ doc.url }}</a>
       </li>
