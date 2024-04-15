@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Persons</h1>
+  {% if person_list %}
+    <ul>
+      {% for person in person_list %}
+      <li>
+        <a href="{{ person.get_absolute_url }}">{{ person.name }}</a>
+      </li>
+      {% endfor %}
+      
+    </ul>
+
+  {% else %}
+    <p>There are no persons specified.</p>
+
+  {% endif %}
+
+{% endblock %}

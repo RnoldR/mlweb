@@ -24,7 +24,7 @@ class UtteringAdmin(admin.ModelAdmin):
 
 @admin.register(Doc)
 class DocAdmin(admin.ModelAdmin):
-    list_display = ('name', 'url')
+    list_display = ('title', 'author', 'url')
 
 @admin.register(DocInstance)
 class DocInstance(admin.ModelAdmin):

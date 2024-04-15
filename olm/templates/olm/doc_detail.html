@@ -1,11 +1,12 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Title: {{ doc.name }}</h1>
+  <h1>{{ doc.title }}</h1>
 
   <p><strong>ID:</strong> {{ doc.id }}</p>
-  <p><strong>Document:</strong> {{ doc.name }}</p>
-  <p><strong>URL:</strong> <a href="">{{ doc.url }}</a></p>
+  <p><strong>Title:</strong> {{ doc.title }}</p>
+  <p><strong>Author:</strong> {{ doc.author }}</p>
+  <p><strong>URL:</strong> <a href="{{ doc.url }}">{{ doc.url }}</a></p>
   
   <!--p><strong>Language:</strong> {{ doc.language }}</p-->
 
