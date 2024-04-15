@@ -33,8 +33,8 @@
             <ul class="sidebar-nav">
               <li><a href="{% url 'index' %}">Home</a></li>
               <li><a href="{% url 'docs' %}">Documents</a></li>
-              <li><a href="">All conversations</a></li>
-              <li><a href="">All persons</a></li>
+              <li><a href="{% url 'conversations' %}">Conversations</a></li>
+              <li><a href="{% url 'persons' %}">Persons</a></li>
             </ul>
           {% endblock %}
         </div>

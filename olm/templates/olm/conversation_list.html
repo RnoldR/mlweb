@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Conversations</h1>
+  {% if conversation_list %}
+    <ul>
+      {% for conversation in conversation_list %}
+      <li>
+        <a href="{{ conversation.get_absolute_url }}">{{ conversation.llm_used }} 
+          ({{ conversation.language }}) {{ conversation.started }}</a>
+      </li>
+      {% endfor %}
+      
+    </ul>
+
+  {% else %}
+    <p>There are no conversations specified.</p>
+
+  {% endif %}
+
+{% endblock %}

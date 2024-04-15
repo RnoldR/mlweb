@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ conversation.title }}</h1>
+
+  <p><strong>ID:</strong> {{ conversation.id }}</p>
+  <p><strong>LLM:</strong> {{ conversation.llm_used }}</p>
+  <p><strong>Language:</strong> {{ conversation.language }}</p>
+  <p><strong>Started at:</strong> {{ conversation.language }}</p>
+
+{% endblock %}

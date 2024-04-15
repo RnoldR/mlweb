@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.urls import reverse
 from datetime import datetime
 
 # Create your models here.
@@ -43,12 +44,6 @@ UTR_TYPES = (
 
 class Conversation(models.Model):
     # Unique ID
-    id = models.UUIDField(
-        primary_key = True, 
-        default=uuid.uuid4,
-        help_text="Unique ID for each conversation",
-    )
-
     # name of llm being used for this Conversation
     llm_used = models.IntegerField(
         choices = MODEL_NAMES,
@@ -72,22 +67,22 @@ class Conversation(models.Model):
     )
 
     class Meta:
-        ordering = ['started']
+        ordering = ['llm_used', 'started']
+
+
+    def get_absolute_url(self):
+        """Returns the URL to access a particular instance of the model."""
+
+        return reverse('conversation-detail-view', args=[str(self.id)])
+
 
     def __str__(self):
-        return f'{self.llm_used} @ {self.started}'
+        return f'{self.llm_used} ({self.language}) @ {self.started}'
     
-### class: Conversation ###
+### Class: Conversation ###
     
 
 class Person(models.Model):
-    # Unique ID
-    id = models.UUIDField(
-        primary_key = True, 
-        default=uuid.uuid4,
-        help_text="Unique ID for each person",
-    )
-
     name = models.CharField(
         max_length = 20,
         help_text = "Name of person",
@@ -96,81 +91,49 @@ class Person(models.Model):
     class Meta:
         ordering = ['name']
 
+
+    def get_absolute_url(self):
+        """Returns the URL to access a particular instance of the model."""
+        return reverse('person-detail-view', args=[str(self.id)])
+
+
     def __str__(self):
         return f'{self.name}'
     
 ### class: Person ###
 
     
-class Uttering(models.Model):
-    # Unique ID
-    id = models.UUIDField(
-        primary_key = True, 
-        default=uuid.uuid4,
-        help_text="Unique ID for each uttering",
-    )
-    
-    # ID of person having the conversation
-    person = models.ForeignKey(
-        'Person',
-        on_delete = models.RESTRICT,
-        null = True,
-        help_text = "Person uttering this uttering",
-    )
-    
-    # Date and time of this uttering
-    timestamp = models.DateTimeField(
-        null = False,
-        blank = False,
-        default = datetime.now(),
-        help_text = 'Date and time of the uttering',
-    )
-    
-    # Type of the Uttering
-    type = models.CharField(
-        max_length = 2,
-        choices = UTR_TYPES,
-        default = 'en',
-        help_text = "Type of uttering",
-    )
-    
-    # the contents of this uttering
-    words = models.TextField(help_text = "Uttered text")
-    
-    class Meta:
-        ordering = ['person', 'timestamp']
-
-    def __str__(self):
-        return f'{self.person}:   {self.timestamp}'
-    
-### class: Uttering ###
-    
-
 class Doc(models.Model):
-    # Unique ID
-    id = models.UUIDField(
-        primary_key = True, 
-        default=uuid.uuid4,
-        help_text="Unique ID for document",
-    )
-    
-    name = models.CharField(
-        max_length = 20,
+    title = models.CharField(
+        max_length = 255,
         default = '',
-        help_text = "Name of document",
+        help_text = "Name of the person",
     )
+
+    author = models.CharField(
+        max_length = 80,
+        default = '',
+        help_text = "Author of the person",
+    )   
     
     url = models.CharField(
         max_length = 256,
         null = False,
-        help_text = "Name of document",
+        help_text = "Link to the person",
     )
     
     class Meta:
-        ordering = ['name']
+        ordering = ['title']
+
+
+    def get_absolute_url(self):
+        """Returns the URL to access a particular instance of the model."""
+
+        return reverse('doc-detail-view', args=[str(self.id)])
+
 
     def __str__(self):
-        return f'{self.name}:   {self.url}'
+        return f'{self.author}:   {self.title}'
     
 ### class: Doc ###
     
@@ -213,7 +176,56 @@ class DocInstance(models.Model):
     class Meta:
         ordering = ['conversation_id']
 
+
+    def get_absolute_url(self):
+        """Returns the URL to access a particular instance of the model."""
+        return reverse('docinstance-detail-view', args=[str(self.id)])
+
+
     def __str__(self):
         return f'{self.conversation_id}:   {self.doc_id}'
     
 ### class: DocInstance ###
+
+
+class Uttering(models.Model):
+    # ID of person having the conversation
+    person = models.ForeignKey(
+        'Person',
+        on_delete = models.RESTRICT,
+        null = True,
+        help_text = "Person uttering this uttering",
+    )
+    
+    # Date and time of this uttering
+    timestamp = models.DateTimeField(
+        null = False,
+        blank = False,
+        default = datetime.now(),
+        help_text = 'Date and time of the uttering',
+    )
+    
+    # Type of the Uttering
+    type = models.CharField(
+        max_length = 2,
+        choices = UTR_TYPES,
+        default = 'en',
+        help_text = "Type of uttering",
+    )
+    
+    # the contents of this uttering
+    words = models.TextField(help_text = "Uttered text")
+    
+    class Meta:
+        ordering = ['person', 'timestamp']
+
+
+    def get_absolute_url(self):
+        """Returns the URL to access a particular instance of the model."""
+        return reverse('uttering-detail-view', args=[str(self.id)])
+
+
+    def __str__(self):
+        return f'{self.person}:   {self.timestamp}'
+    
+### class: Uttering ###
