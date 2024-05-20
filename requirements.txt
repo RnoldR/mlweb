@@ -3,5 +3,7 @@ numpy
 pandas
 psutil
 chromadb
+unstructured
+pypandoc_binary
 langchain-community
 sentence-transformers
