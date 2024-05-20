@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ trainedllm.name }}</h1>
+
+  <p><strong>ID:</strong> {{ trainedllm.id }}</p>
+  <p><strong>LLM:</strong> {{ trainedllm.llm }}</p>
+  <p><strong>Language:</strong> {{ trainedllm.doc }}</p>
+  <p><strong>Started at:</strong> {{ trainedllm.embedding_model }}</p>
+
+{% endblock %}

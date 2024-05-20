@@ -32,10 +32,14 @@
           {% block sidebar %}
             <ul class="sidebar-nav">
               <li><a href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'llms' %}">LLM's</a></li>
+              <li><a href="{% url 'trainedllms' %}">Trained LLMs</a></li>
               <li><a href="{% url 'docs' %}">Documents</a></li>
-              <li><a href="{% url 'conversations' %}">Conversations</a></li>
               <li><a href="{% url 'persons' %}">Persons</a></li>
+              <li><a href="{% url 'conversations' %}">Conversations</a></li>
             </ul>
+            <p></p>
+            <!--p><a href="{procent-teken url 'accounts/login/' %}">Login</a></p-->
           {% endblock %}
         </div>
         <div class="col-sm-10 ">{% block content %}{% endblock %}</div>

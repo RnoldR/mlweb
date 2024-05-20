@@ -6,8 +6,13 @@
     <ul>
       {% for conversation in conversation_list %}
       <li>
-        <a href="{{ conversation.get_absolute_url }}">{{ conversation.llm_used }} 
-          ({{ conversation.language }}) {{ conversation.started }}</a>
+        <a href="{{ conversation.get_absolute_url }}">
+          {{ conversation.person_1 }} vs. 
+          {{ conversation.person_2 }}: 
+          {{ conversation.llm }} 
+          ({{ conversation.language }}) 
+          {{ conversation.timestamp }}
+        </a>
       </li>
       {% endfor %}
       
