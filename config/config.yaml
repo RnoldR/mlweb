@@ -1,0 +1,11 @@
+model: wizard-vicuna-uncensored:7b
+
+documents:
+  - '/media/i-files/data/books/SF/Alastair Reynolds/Revelation Space 01 - Revelation Space (2000).epub'
+  - '/media/i-files/data/books/SF/Alastair Reynolds/Revelation Space 03 - Redemption Ark (2003).epub'  
+  # - 'https://www.gutenberg.org/files/1727/1727-h/1727-h.htm'
+
+text_splitter:
+  chunk_size: 500
+  chunk_overlap: 20
+
