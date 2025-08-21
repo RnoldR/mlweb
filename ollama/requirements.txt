@@ -1,7 +1,0 @@
-bs4
-numpy
-pandas
-psutil
-chromadb
-langchain-community
-sentence-transformers

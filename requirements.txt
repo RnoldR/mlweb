@@ -1,7 +1,13 @@
 bs4
+lxml
 numpy
 pandas
 psutil
+ollama
+requests
 chromadb
+pypandoc
+bitstring
+unstructured
 langchain-community
 sentence-transformers

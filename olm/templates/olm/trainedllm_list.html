@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Trained LLM's</h1>
+  {% if trainedllm_list %}
+    <ul>
+      {% for trainedllm in trainedllm_list %}
+      <li>
+        <a href="{{ trainedllm.get_absolute_url }}">
+          {{ trainedllm.name }} 
+          {{ trainedllm.llm }}: 
+          {{ trainedllm.doc }} 
+          ({{ trainedllm.embedding_model }}) 
+          {{ trainedllm.chunk_size }}
+          {{ trainedllm.chunk_overlap }}
+        </a>
+      </li>
+      {% endfor %}
+      
+    </ul>
+
+  {% else %}
+    <p>There are no trained llm's specified.</p>
+
+  {% endif %}
+
+{% endblock %}

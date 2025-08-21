@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Conversation, Person, Uttering, Doc, DocInstance
+from .models import LLM, TrainedLLM, Doc, Conversation, Person, Statement
 
 # Register your models here.
 
@@ -10,23 +10,26 @@ from .models import Conversation, Person, Uttering, Doc, DocInstance
 # admin.site.register(DocInstance)
 
 # define the admin class
-@admin.register(Conversation)
-class ConversationAdmin(admin.ModelAdmin):
-    list_display = ('llm_used', 'language', 'started')
-
-@admin.register(Person)
-class PersonAdmin(admin.ModelAdmin):
+@admin.register(LLM)
+class LLMAdmin(admin.ModelAdmin):
     list_display = ['name']
-
-@admin.register(Uttering)
-class UtteringAdmin(admin.ModelAdmin):
-    list_display = ('person', 'timestamp', 'type')
+    
+@admin.register(TrainedLLM)
+class TrainedLLMAdmin(admin.ModelAdmin):
+    list_display = ('name', 'doc', 'embedding_model', 'chunk_size', 'chunk_overlap')
 
 @admin.register(Doc)
 class DocAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'url')
+    list_display = ('author', 'title', 'language')
 
-@admin.register(DocInstance)
-class DocInstance(admin.ModelAdmin):
-    list_display = ('embedding_model', 'chunk_size', 'chunk_overlap')
-    
+@admin.register(Conversation)
+class ConversationAdmin(admin.ModelAdmin):
+    list_display = ('person_1', 'person_2', 'language', 'timestamp')
+
+@admin.register(Person)
+class PersonAdmin(admin.ModelAdmin):
+    list_display = ['name', 'trained_llm']
+
+@admin.register(Statement)
+class StatementAdmin(admin.ModelAdmin):
+    list_display = ('person', 'conversation', 'timestamp', 'type')

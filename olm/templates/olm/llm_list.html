@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Large Language Models</h1>
+  {% if llm_list %}
+    <ul>
+      {% for llm in llm_list %}
+      <li>
+        <a href="{{ llm.get_absolute_url }}">{{ llm.id }} - {{ llm.name }}</a>
+      </li>
+      {% endfor %}
+      
+    </ul>
+
+  {% else %}
+    <p>There are no llms specified.</p>
+
+  {% endif %}
+
+{% endblock %}

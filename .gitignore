@@ -155,3 +155,15 @@ config/s3cfg
 src/init.py
 workdir/docs/logic-model.md
 workdir/sql/logic-model.sql
+sprekers/*
+tk-spreker*
+ollama/src/nllb-200-distilled-600M-int8/model.bin
+ollama/averaged-10-epoch.pt
+ollama/sentencepiece.model
+ollama/src/averaged-10-epoch.pt
+ollama/src/nllb-200-3.3B-int8/model.bin
+ollama/src/nllb-200-3.3B-int8/config.json
+ollama/src/transformer-ende-wmt-pyOnmt.tar.gz
+ollama/src/sentencepiece.model
+.gitignore
+ollama/src/flores200_sacrebleu_tokenizer_spm.model
