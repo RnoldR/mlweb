@@ -1,7 +1,6 @@
 # from langchain.llms import Ollama
 import os
 import time
-import yaml
 
 from langchain_community.llms import Ollama
 from langchain_community.document_loaders import WebBaseLoader
@@ -29,8 +28,6 @@ def get_model(model_name: str) -> object:
 
 
 def get_webdoc(url: str) -> object:
-    print(f'Fetching url: {url}')
-    doc = WebBaseLoader(url)
     
     return doc
 
@@ -49,25 +46,30 @@ def get_epub(doc_name: str) -> object:
 def get_documents(paths: list):
     cpu = time.time()
 
+    # load all documents
     documents = []
-
     for filename in paths:
+        # pick a loader
         if filename.endswith('.pdf'):
             print(f'Loading PDF: {filename}')
             loader = PyPDFLoader(filename)
-            documents.extend(loader.load())
 
         elif filename.endswith('.epub'):
             print(f'Loading epub: {filename}')
             loader = UnstructuredEPubLoader(filename)
-            documents.extend(loader.load())
 
         elif filename.endswith('.txt'):
             print(f'Loading text file: {filename}')
             loader = TextLoader(filename)
-            documents.extend(loader.load())    
+
+        elif filename.startswith('http'):
+            print(f'Fetching url: {filename}')
+            loader = WebBaseLoader(filename)
 
         # if
+
+        # load the document
+        documents.extend(loader.load())    
     # for
 
     cpu = time.time() - cpu

@@ -1,9 +1,0 @@
-bs4
-numpy
-pandas
-psutil
-chromadb
-pypandoc
-unstructured
-langchain-community
-sentence-transformers
